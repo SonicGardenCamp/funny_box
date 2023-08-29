@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   delete "/logout",  to: "sessions#destroy"
 
   resources :users
-  resources :groups
+  resources :groups do
+    resources :posts, only: [:create, :destroy]
+  end
   post "add_user/:id",   to: "groups#add_user", as: "add_user"
 end
