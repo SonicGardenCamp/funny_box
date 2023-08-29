@@ -1,4 +1,7 @@
 <% provide(:button_text, '変更') %>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
 <h1>プロフィールを編集</h1>
 
 <div>
