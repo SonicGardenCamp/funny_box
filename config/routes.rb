@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :users
   resources :groups
+  post "add_user/:id",   to: "groups#add_user", as: "add_user"
 end

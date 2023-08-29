@@ -1,0 +1,13 @@
+<h1>参加者一覧</h1>
+<ul>
+  <% @users.each do |t| %>
+    <li><%= t.name %>
+  <% end %>
+</ul>
+
+<%= button_to "参加する" , add_user_path(@group.id) %>
+
+<!--チャット機能-->
+
+
+<%= link_to "一覧へ戻る", groups_path %>

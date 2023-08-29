@@ -1,0 +1,8 @@
+<h1>グループ一覧</h1>
+
+<% @groups.each do |t| %>
+  <%= link_to t.name, group_path(t.id) %>
+  <%= button_to "参加する", add_user_path(t.id) %>
+<% end %>
+
+<%= link_to "新規グループ作成", new_group_path %>
