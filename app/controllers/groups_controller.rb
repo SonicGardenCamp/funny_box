@@ -30,7 +30,22 @@ class GroupsController < ApplicationController
   def edit
     @group = Group.find(params[:id])
   end
-
+  
+  def update
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
+      redirect_to @group
+    else
+      render "edit", status: :unprocessable_entity
+    end
+  end
+  
+  def destroy
+    Group.find(params[:id]).destroy
+    flash[:success] = "グループが削除されました"
+    redirect_to groups_url, status: :see_other
+  end
+  
   def add_user
     # 仮実装 current_userで実装
     user = User.find(2)
@@ -43,6 +58,7 @@ class GroupsController < ApplicationController
       redirect_to groups_path
     end
   end
+
 
 
   
