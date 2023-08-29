@@ -9,9 +9,10 @@ class SessionsController < ApplicationController
       reset_session
       remember user
       log_in user
+      flash[:success] = "ログインに成功しました"
       redirect_to forwarding_url || user
     else
-      flash.now[:danger] = "メールアドレスかパスワードが間違っています。"
+      flash.now[:danger] = "メールアドレスかパスワードが間違っています"
       render 'new', status: :unprocessable_entity
     end
   end
