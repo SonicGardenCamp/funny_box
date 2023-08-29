@@ -1,7 +1,18 @@
-<h1>ふぁにーbox</h1>
+<div class="mt-5 mx-auto w-75">
+  <div class="card">
+    <div class="card-header">
+      ふぁにーbox
+    </div>
+    <div class="card-body">
+      ふぁにーboxとは、趣味でつながるほげほげです。
+    </div>
+  </div>
+  <div class="mt-3 text-center">
+    <% if logged_in? %>
+      <%= link_to "マイページ", @user %>
+    <% else %>
+      <%= link_to "ログイン", login_path %>
+    <% end %>
+  </div>
+</div>
 
-<% if logged_in? %>
-  <%= link_to "マイページ", @user %>
-<% else %>
-  <%= link_to "ログイン", login_path %>
-<% end %>
