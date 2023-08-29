@@ -9,5 +9,8 @@
 
 <!--チャット機能-->
 
+<%= link_to "編集する", edit_group_path(@group.id) %>
+<%= link_to "グループ削除", @group, data: { "turbo-method": :delete,
+                                          turbo_confirm: "このグループを削除しますか?" } %>
 
 <%= link_to "一覧へ戻る", groups_path %>
