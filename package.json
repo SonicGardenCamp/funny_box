@@ -21,8 +21,6 @@
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
   },
   "browserslist": [
-    "defaults",
-    "defaults",
     "defaults"
   ]
 }
