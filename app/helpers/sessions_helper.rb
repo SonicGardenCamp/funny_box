@@ -29,7 +29,6 @@ module SessionsHelper
   #ログインしているかどうか
   def logged_in?
     !current_user.nil?
-    @user = current_user
   end
 
   def forget(user)
