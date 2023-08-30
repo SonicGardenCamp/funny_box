@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_053058) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.integer "host_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
