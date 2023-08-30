@@ -5,7 +5,7 @@
   <% end %>
 </ul>
 
-<%= button_to "参加する" , add_user_path(@group.id) %>
+<%= button_to button_text(@group), add_user_path(@group.id) %>
 
 <% if @group.users.include?(current_user) %>
   <%= form_with(model: [@group, @post], local: true) do |f| %>
