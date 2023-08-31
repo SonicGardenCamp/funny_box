@@ -66,3 +66,5 @@ gem "sentry-rails", "~> 5.10"
 gem 'kaminari'
 
 gem 'bootstrap4-kaminari-views'
+
+gem "faker"
