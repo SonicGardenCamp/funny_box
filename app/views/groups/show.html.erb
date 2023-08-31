@@ -4,8 +4,12 @@
     <li><%= t.name %>
   <% end %>
 </ul>
-
-<%= button_to button_text(@group), add_user_path(@group.id) %>
+<%= 
+  link_to button_text(@group)[0],
+  add_user_path(@group.id),
+  class: "ms-3 card-link btn #{button_text(@group)[1]}",
+  data: { turbo_method: :post }  
+%>
 
 <% if @group.users.include?(current_user) %>
   <%= form_with(model: [@group, @post], local: true) do |f| %>
