@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :host_user, only:[:edit, :destroy, :update, :create_tag]
 
   def index
-    @groups = Group.includes(:posts).joins(:posts)
+    @groups = Group.includes(:posts)
     @groups = @groups.order(created_at: :desc).page(params[:page])
   end
 
