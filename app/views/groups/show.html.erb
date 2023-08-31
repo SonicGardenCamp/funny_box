@@ -1,36 +1,53 @@
-<h1>参加者一覧</h1>
-<ul>
-  <% @users.each do |t| %>
-    <li><%= t.name %>
+<button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+
+<div class='container-fluid'>
+  <div class='row'>
+    <h1 class='col-5 offset-4'><%= @group.name%></h1>
+    <div class='col'>
+      <h2>メンバー</h2>
+      <ul>
+        <% @users.each do |t| %>
+          <li><%= t.name %>
+        <% end %>
+      </ul>
+    </div>
+    <%= 
+      link_to button_text(@group)[0],
+      add_user_path(@group.id),
+      class: "align-self-start col ms-3 card-link btn #{button_text(@group)[1]}",
+      data: { turbo_method: :post }  
+    %>
+  </div>
+  <div class='row'>
+    <% @posts.each do |post| %>
+      <p>
+        <%= post.user.name %> さん
+      </p>
+      <p>
+        <%= post.content %>
+      </p>
+      <% if current_user == post.user || current_user == @host_user %> 
+        <%= link_to "削除",group_post_path(@group, post), data: { "turbo-method": :delete }, class: 'btn btn-danger' %>
+      <% end %>
+    <% end %>
+    <% if @group.users.include?(current_user) %>
+      <div class='col offset-4'>
+        <%= form_with(model: [@group, @post], local: true) do |f| %>
+          <%= f.text_area :content %>
+          <%= f.hidden_field :group_id, value: @group.id %>
+          <%= f.submit "投稿", class: 'btn btn-secondary align-self-center' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+  
+  <% if current_user == @host_user %> 
+    <%= link_to "編集する", edit_group_path(@group.id) %>
+    <%= link_to "グループ削除", @group, data: { "turbo-method": :delete,
+                                              turbo_confirm: "このグループを削除しますか?" } %>
   <% end %>
-</ul>
-<%= 
-  link_to button_text(@group)[0],
-  add_user_path(@group.id),
-  class: "ms-3 card-link btn #{button_text(@group)[1]}",
-  data: { turbo_method: :post }  
-%>
+  <%= link_to "一覧へ戻る", groups_path %>
 
-<% if @group.users.include?(current_user) %>
-  <%= form_with(model: [@group, @post], local: true) do |f| %>
-    <%= f.text_area :content %>
-    <%= f.hidden_field :group_id, value: @group.id %>
-    <%= f.submit "送信" %>
-  <% end %>
-<% end %>
-
-<% @posts.each do |post| %>
-  <%= post.content %>
-  <%= post.user.name %>
-  <% if current_user == post.user || current_user == @host_user %> 
-    <%= link_to "削除",group_post_path(@group, post), data: { "turbo-method": :delete } %>
-  <% end %>
-<% end %>
-
-
-<% if current_user == @host_user %> 
-  <%= link_to "編集する", edit_group_path(@group.id) %>
-  <%= link_to "グループ削除", @group, data: { "turbo-method": :delete,
-                                            turbo_confirm: "このグループを削除しますか?" } %>
-<% end %>
-<%= link_to "一覧へ戻る", groups_path %>
+</div>
