@@ -1,9 +1,11 @@
+
+<%= link_to "新規グループ作成", new_group_path %>
+
 <h1>グループ一覧</h1>
-
-
 
 <div class="row">
   <%= render @groups %>
 </div>
 
-<%= link_to "新規グループ作成", new_group_path %>
+<%= paginate @groups, theme: 'twitter-bootstrap-4' %>
+

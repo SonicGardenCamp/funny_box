@@ -3,7 +3,7 @@
 <div class="row mt-5">
   <div class="col-md-5 mx-auto">
     <%= form_with(model: @user) do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <div class="mb-3">
       <%= f.label :name, "ユーザー名" %>
