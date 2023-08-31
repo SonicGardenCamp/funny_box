@@ -4,12 +4,23 @@
     <li><%= t.name %>
   <% end %>
 </ul>
-<%= 
+<%=
   link_to button_text(@group)[0],
   add_user_path(@group.id),
   class: "ms-3 card-link btn #{button_text(@group)[1]}",
-  data: { turbo_method: :post }  
+  data: { turbo_method: :post }
 %>
+
+<% if current_user == @host_user %>
+  <%= form_with(model: [@group, @tag], local: true, url: create_tag_path(@group.id)) do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit "送信" %>
+  <% end %>
+<% end %>
+
+  <% @group.tags.each do |t| %>
+    <%= t.name %>
+  <% end %>
 
 <% if @group.users.include?(current_user) %>
   <%= form_with(model: [@group, @post], local: true) do |f| %>
@@ -22,13 +33,13 @@
 <% @posts.each do |post| %>
   <%= post.content %>
   <%= post.user.name %>
-  <% if current_user == post.user || current_user == @host_user %> 
+  <% if current_user == post.user || current_user == @host_user %>
     <%= link_to "削除",group_post_path(@group, post), data: { "turbo-method": :delete } %>
   <% end %>
 <% end %>
 
 
-<% if current_user == @host_user %> 
+<% if current_user == @host_user %>
   <%= link_to "編集する", edit_group_path(@group.id) %>
   <%= link_to "グループ削除", @group, data: { "turbo-method": :delete,
                                             turbo_confirm: "このグループを削除しますか?" } %>

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     resources :posts, only: [:create, :destroy]
   end
   post "add_user/:id",   to: "groups#add_user", as: "add_user"
+  post "create_tag/:id",   to: "groups#create_tag", as: "create_tag"
 end
