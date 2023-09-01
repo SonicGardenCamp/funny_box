@@ -1,12 +1,29 @@
 
+
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<div class="my-2">
+  <%#= sort_url(@q, :last_name, [:last_name, 'first_name asc']) %>
+  <%= sort_link(@q, :id , '新着順') %>
+  <%= sort_link(@q, :name , '名前順') %>
+  <%= sort_link(@q, :posts_content , '更新順') %>
+</div>
+
+
 <div class="d-flex justify-content-between mb-3">
   <h2>グループ一覧</h2>
   <%= link_to "新規グループ作成", new_group_path , class: "btn btn-primary" %>
 </div>
 
 <div class="row">
-  <%= render @groups %>
+  <%= render @result %>
 </div>
 
-<%= paginate @groups, theme: 'twitter-bootstrap-4' %>
+<%= paginate @result, theme: 'twitter-bootstrap-4' %>
 
