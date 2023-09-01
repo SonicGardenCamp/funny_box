@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    
+    # TODO: 仮実装
     @groups = @user.groups.first(3)
 
   end
