@@ -68,3 +68,5 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 
 gem "faker"
+
+gem 'ransack'

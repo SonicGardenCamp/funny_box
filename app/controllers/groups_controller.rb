@@ -4,7 +4,10 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.includes(:posts)
-    @groups = @groups.order(created_at: :desc).page(params[:page])
+    # @groups = @groups.order(created_at: :desc).page(params[:page])
+    @q = @groups.ransack(params[:q])
+    # TODO: 後でやる。ユニーク性未実装
+    @result = @q.result.includes(:posts).page(params[:page])
   end
 
   def show
