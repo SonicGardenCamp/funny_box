@@ -31,9 +31,11 @@ class GroupsController < ApplicationController
     end
   end
 
-  def add_user
+  def enter_leave
     @group = Group.find(params[:id])
-    if @group.users.include?(current_user)
+    if @group.host_user_id == current_user.id
+      redirect_to @group
+    elsif @group.users.include?(current_user)
       @group.users.delete(current_user)
       redirect_to groups_path
     else
