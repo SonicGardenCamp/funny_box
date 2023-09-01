@@ -28,7 +28,7 @@
       </div>
       <%= 
         link_to button_text(@group)[0],
-        add_user_path(@group.id),
+        enter_leave_path(@group.id),
         class: "ms-1 card-link btn #{button_text(@group)[1]}",
         data: { turbo_method: :post }  
       %>
