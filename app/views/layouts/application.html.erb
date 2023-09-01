@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <link rel="stylesheet" href="<%= asset_path('custom_styles.css') %>" />
     <%= render 'layouts/header' %>
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>

@@ -1,6 +1,24 @@
 <div class='container-fluid mb-5'>
   <div class='row justify-content-center'>
     <h1 class='text-center'><%= @group.name%></h1>
+    <p><%= @group.description %></p>
+    
+    <div class="justify-content-left">
+      <div class="Tag-list mb-3">
+        <% @group.tags.each do |t| %>
+           <span class="tag"><%= "##{t.name}" %></span>
+        <% end %>
+      </div>
+      <div class="Tag-form mb-3">
+        <% if current_user == @host_user %>
+          <%= form_with(model: [@group, @tag], local: true, url: create_tag_path(@group.id)) do |f| %>
+            <%= f.text_field :name %>
+            <%= f.submit "送信" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
     <div class='d-flex justify-content-end mb-3'>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         メンバー
@@ -67,12 +85,4 @@
   </div> 
 </div>
 
-<% if current_user == @host_user %>
-  <%= form_with(model: [@group, @tag], local: true, url: create_tag_path(@group.id)) do |f| %>
-    <%= f.text_field :name %>
-    <%= f.submit "送信" %>
-  <% end %>
-<% end %>
-  <% @group.tags.each do |t| %>
-    <%= t.name %>
-  <% end %>
+

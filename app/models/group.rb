@@ -5,7 +5,7 @@ class Group < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :description, length: { maximum: 255 }
 
-  has_many :tag_group_relationships
+  has_many :tag_group_relationships, dependent: :delete_all
   has_many :tags, through: :tag_group_relationships
 
 end
