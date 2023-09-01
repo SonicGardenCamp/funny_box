@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :logged_in_user, only:[:new, :create, :add_user]
+  before_action :logged_in_user, only:[:new, :create, :enter_leave]
   before_action :host_user, only:[:edit, :destroy, :update, :create_tag]
 
   def index
