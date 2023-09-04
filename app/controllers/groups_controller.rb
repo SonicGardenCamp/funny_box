@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     # @host_user  = User.find(@group.host_user_id)
     @users = @group.users
-    @posts = @group.posts
+    @posts = @group.posts.order(created_at: :desc).first(10)
     @post  = Post.new
     @tag = Tag.new
   end
