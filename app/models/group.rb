@@ -1,4 +1,5 @@
 class Group < ApplicationRecord
+  belongs_to :host_user, class_name: :User, foreign_key: :host_user_id
   has_many :user_group_relationships, dependent: :delete_all
   has_many :users, through: :user_group_relationships
   has_many :posts, dependent: :delete_all
@@ -9,11 +10,11 @@ class Group < ApplicationRecord
   has_many :tags, through: :tag_group_relationships
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[name id]
+    %w[name id last_posted_at]
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    %w[posts]
-  end
+  # def self.ransackable_associations(auth_object = nil)
+  #   %w[posts]
+  # end
 
 end

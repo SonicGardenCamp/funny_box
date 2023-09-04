@@ -12,7 +12,7 @@
         <% end %>
       </div>
       <div class="Tag-form mb-3">
-        <% if current_user == @host_user %>
+        <% if current_user == @group.host_user %>
           <%= form_with(model: [@group, @tag], local: true, url: create_tag_path(@group.id)) do |f| %>
             <%= f.text_field :name %>
             <%= f.submit "送信" %>
@@ -62,7 +62,7 @@
           <%= l post.created_at %>
         </span>
         <span>
-        <% if current_user == post.user || current_user == @host_user %>
+        <% if current_user == post.user || current_user == @group.host_user %>
           <%= link_to "削除", group_post_path(@group, post), data: { "turbo-method": :delete }, class: 'ps-3' %>
         <% end %>
         </span>
@@ -78,7 +78,7 @@
   </div>
   <div class='row'>
     <div class='d-flex justify-content-end'>
-    <% if current_user == @host_user %>
+    <% if current_user == @group.host_user %>
       <%= link_to "編集する", edit_group_path(@group.id), class: 'mx-3' %>
       <%= link_to "グループ削除", @group, data: { "turbo-method": :delete,
                                                 turbo_confirm: "このグループを削除しますか?" }, class: 'mx-3' %>
