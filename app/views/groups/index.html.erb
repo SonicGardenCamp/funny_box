@@ -8,6 +8,12 @@
   <%= f.submit %>
 <% end %>
 
+<%= link_to "ぐるくん", groups_path(q: { category_cont: "ぐるくん"}),
+              class: "btn btn-light"%>
+              
+<%= link_to "インドア", groups_path(q: { category_cont: "インドア"}),
+              class: "btn btn-light"%>
+
 <div class="my-2">
   <%#= sort_url(@q, :last_name, [:last_name, 'first_name asc']) %>
   <%= sort_link(@q, :id , '新着順') %>
