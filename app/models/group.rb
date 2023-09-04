@@ -7,6 +7,10 @@ class Group < ApplicationRecord
   validates :description, length: { maximum: 255 }
   validates :category, presence: true
   
+  before_create do
+    self.last_posted_at = Time.current if last_posted_at.blank?
+  end
+
   
   CATEGORIES = ["ぐるくん", "インドア", "アウトドア","料理","スポーツ","遊び場","飯","賭け事"].freeze
 

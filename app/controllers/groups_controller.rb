@@ -3,8 +3,7 @@ class GroupsController < ApplicationController
   before_action :host_user, only:[:edit, :destroy, :update, :create_tag]
 
   def index
-    @groups = Group.includes(:posts)
-    @q = @groups.ransack(params[:q])
+    @q = Group.ransack(params[:q])
     @result = @q.result.order(last_posted_at: :desc).page(params[:page])
   end
 
