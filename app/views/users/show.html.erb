@@ -5,6 +5,7 @@
       <div class='mb-5 col-3 offset-9'>
         <% if current_user == @user %>
           <%= link_to "ユーザー編集", edit_user_path, class:'btn btn-secondary' %>
+          <%= link_to "ユーザー削除", user_path, data: { "turbo-method": :delete, turbo_confirm: "本当に削除してもよろしいですか？" }, class:'btn btn-danger' %>
         <% end %>
       </div>
     </div>
@@ -33,3 +34,4 @@
     </div>
   </div>
 </div>
+
