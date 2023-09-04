@@ -34,11 +34,12 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <% @users.each do |t| %>
-                <ul class='list-group'>
-                  <li class='list-group-item mt-1'><%= t.name %>
-                </ul>
-              <% end %>
+              <ul class='list-group'>
+                <% @users.each do |t| %>
+                  <li class='list-group-item'>
+                    <%= link_to t.name, user_path(t) %>
+                <% end %>
+              </ul>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -58,7 +59,7 @@
     <% @posts.each do |post| %>
       <div class='mt-3 mb-3'>
         <span>
-          <%= post.user.name %>: <%= post.content %>
+          <%= link_to post.user.name, user_path(post.user) %>: <%= post.content %>
           <%= l post.created_at %>
         </span>
         <span>
