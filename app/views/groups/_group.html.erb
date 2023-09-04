@@ -16,8 +16,8 @@
             data: { turbo_method: :post }
           %>
         <% unless group.posts.blank? %>
-          <%= group.posts.last.content %>
-          <%= l group.posts.last.created_at %>
+          <%= group.posts.first.content %>
+          <%= l group.posts.first.created_at %>
         <% end %>
       </div>
     </div>
