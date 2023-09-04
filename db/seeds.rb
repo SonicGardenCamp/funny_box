@@ -11,23 +11,28 @@ User.create!(name:  "BBB",
 
 Group.create!(name: "ぐるくん後援会北京支部",
               description: "愚瑠君最高！",
+              category: "ぐるくん",
               host_user_id: 1)
 
 Group.create!(name: "ぐるくん後援会大阪支部",
               description: "ぐるくんは最高や！",
+              category: "ぐるくん",
               host_user_id: 1)
 
 Group.create!(name: "ぐるくん後援会アラスカ支部",
               description: "Gurukun is wonderful!!",
+              category: "ぐるくん",
               host_user_id: 1)
 
 Group.create!(name: "ぐるくん後援会ミュンヘン支部",
               description: "Gurukun ist das Beste!!",
+              category: "ぐるくん",
               host_user_id: 1)
 
 15.times do |m|
   group = Group.create(name: Faker::Lorem.word,
-                        host_user_id: 1
+                        host_user_id: 1,
+                        category: "ぐるくんではない",
                         )
 
   3.times do |n|

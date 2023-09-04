@@ -78,7 +78,7 @@ class GroupsController < ApplicationController
   private
 
     def group_params
-      params.require(:group).permit(:name, :description)
+      params.require(:group).permit(:name, :description, :category)
     end
 
     def logged_in_user
@@ -95,8 +95,8 @@ class GroupsController < ApplicationController
       redirect_to(root_url, status: :see_other) unless current_user == @host_user
     end
 
-      def tag_params
-        params.require(:tag).permit(:name, :group_id)
-      end
+    def tag_params
+      params.require(:tag).permit(:name, :group_id)
+    end
 
 end
