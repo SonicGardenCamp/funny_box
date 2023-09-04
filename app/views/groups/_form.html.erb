@@ -7,7 +7,7 @@
   <div class="mb-3">
   <%= f.label :category, "カテゴリー選択", class: "form-label"%>
   <%= f.select :category,
-    ["ぐるくん", "インドア","アウトドア"],
+    Group::CATEGORIES,
     { include_blank: "選択してください" },
     { class: "form-select" }
   %>

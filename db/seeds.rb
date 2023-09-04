@@ -32,7 +32,7 @@ Group.create!(name: "ぐるくん後援会ミュンヘン支部",
 15.times do |m|
   group = Group.create(name: Faker::Lorem.word,
                         host_user_id: 1,
-                        category: "ぐるくんではない",
+                        category: Group::CATEGORIES[rand(Group::CATEGORIES.length)],
                         )
 
   3.times do |n|

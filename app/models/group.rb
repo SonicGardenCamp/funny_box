@@ -7,6 +7,9 @@ class Group < ApplicationRecord
   validates :description, length: { maximum: 255 }
   validates :category, presence: true
   
+  
+  CATEGORIES = ["ぐるくん", "インドア", "アウトドア","料理","スポーツ","遊び場","飯","賭け事"].freeze
+
 
   has_many :tag_group_relationships, dependent: :delete_all
   has_many :tags, through: :tag_group_relationships

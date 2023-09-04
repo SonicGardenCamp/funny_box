@@ -1,24 +1,33 @@
 
 
 <%= search_form_for @q do |f| %>
-
-  <%= f.label :name_cont %>
-  <%= f.search_field :name_cont %>
-
-  <%= f.submit %>
+  
+<div class="row g-3 align-items-center mb-4">
+  <div class="col-auto">
+      <%= f.label :name_cont, 'グループ名', class: 'col-form-label'%>
+  </div>
+  <div class="col-auto">
+    <%= f.search_field :name_cont, class: "form-control" %>
+  </div>
+  <div class="col-auto">
+    <%= f.submit "検索",class: "btn btn-primary" %>
+  </div>
+</div>
 <% end %>
 
-<%= link_to "ぐるくん", groups_path(q: { category_cont: "ぐるくん"}),
-              class: "btn btn-light"%>
-              
-<%= link_to "インドア", groups_path(q: { category_cont: "インドア"}),
-              class: "btn btn-light"%>
 
-<div class="my-2">
+<div class="categories-list mb-5">
+  <% Group::CATEGORIES.each do |t| %>
+      <%= link_to t, groups_path(q: { category_cont: t}),
+                    class: "btn btn-light mb-2 border"%>
+  <% end %>
+</div>
+
+<div class="my-2 text-center">
   <%#= sort_url(@q, :last_name, [:last_name, 'first_name asc']) %>
-  <%= sort_link(@q, :id , '新着順') %>
-  <%= sort_link(@q, :name , '名前順') %>
-  <%= sort_link(@q, :last_posted_at , '更新順') %>
+  <%= sort_link(@q, :id , '新着順', class: "text-decoration-none")%>
+  <%= sort_link(@q, :name , '名前順', class: "mx-2 text-decoration-none") %>
+  <%= sort_link(@q, :last_posted_at , '更新順', class: "text-decoration-none") %>
 </div>
 
 
