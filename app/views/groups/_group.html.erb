@@ -8,13 +8,13 @@
           <%=
             link_to button_text(group)[0],
             enter_leave_path(group.id),
-            class: "ms-3 me-5 card-link btn 
+            class: "ms-3 me-5 card-link btn
                     #{ button_text(group)[1] }",
             data: { turbo_method: :post }
           %>
         <% unless group.posts.blank? %>
-          <%= group.posts.first.content %>
-          <%= l group.posts.first.created_at %>
+          <%= group.posts.last.content %>
+          <%= l group.posts.last.created_at %>
         <% end %>
       </div>
     </div>
