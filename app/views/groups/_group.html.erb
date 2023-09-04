@@ -15,9 +15,10 @@
                     #{ button_text(group)[1] }",
             data: { turbo_method: :post }
           %>
-        <% unless group.posts.blank? %>
-          <%= group.posts.first.content %>
-          <%= l group.posts.first.created_at %>
+        <% post = group.posts.order(:id).last  %>
+        <% if post.present? %>
+          <%= post.content %>
+          <%= l post.created_at %>
         <% end %>
       </div>
     </div>
