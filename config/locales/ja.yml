@@ -12,6 +12,9 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+      group:
+        name: グループ名
+        category: カテゴリー
     errors:
       messages:
         accepted: を受諾してください
