@@ -21,8 +21,13 @@
   position: relative;
 }
 
+
 .categories-list  {
     background-color: #f0f0f0;
     margin: auto;
     padding: 8px 0 0 8px;
+}
+
+.danger {
+  color: red;
 }
