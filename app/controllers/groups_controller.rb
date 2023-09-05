@@ -7,15 +7,17 @@ class GroupsController < ApplicationController
     @result = @q.result.order(last_posted_at: :desc).page(params[:page])
   end
 
+  # ここの@usersは1回しか使ってない
   def show
     @group = Group.find(params[:id])
     # @host_user  = User.find(@group.host_user_id)
     @users = @group.users
-    @posts = @group.posts.order(created_at: :desc).first(10)
+    @posts = @group.posts.order(created_at: :desc).first(100)
     @post  = Post.new
     @tag = Tag.new
   end
 
+  # ここの@groupも1回しか使ってなさそう？
   def new
     @group = Group.new
   end
@@ -31,6 +33,7 @@ class GroupsController < ApplicationController
     end
   end
 
+  #パーシャル化かモデルにうつす？
   def enter_leave
     @group = Group.find(params[:id])
     if @group.host_user_id == current_user.id
@@ -44,6 +47,7 @@ class GroupsController < ApplicationController
     end
   end
 
+  #newと同じ
   def edit
     @group = Group.find(params[:id])
   end
@@ -80,6 +84,7 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name, :description, :category)
     end
 
+    #Application_controllerにうつす
     def logged_in_user
       unless logged_in?
         store_location

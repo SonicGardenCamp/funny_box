@@ -21,7 +21,9 @@
       <% end %>
       </div>
 
-      <%= f.submit "ログイン" %>
+      <div>
+      <%= f.submit "ログイン", class: 'btn btn-login mx-auto' %>
+      </div>
     <% end %>
 
     <p class="mt-2">ユーザー登録をしていない方は<%= link_to "ユーザー登録", signup_path %>をしてください</p>

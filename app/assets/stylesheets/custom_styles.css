@@ -31,3 +31,13 @@
 .danger {
   color: red;
 }
+
+.update-time {
+  font-size: 13px;
+  color: #c0c0c0;
+}
+
+.btn-login {
+  background-color: #f5deb3;
+  text-align: center;
+}
