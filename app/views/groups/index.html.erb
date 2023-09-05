@@ -16,6 +16,7 @@
 <% end %>
 
 
+
 <div class="categories-list mb-5">
   <% Group::CATEGORIES.each do |t| %>
       <%= link_to t, groups_path(q: { category_cont: t}),
@@ -31,10 +32,11 @@
 </div>
 
 
-<div class="d-flex justify-content-between mb-3">
-  <h2>グループ一覧</h2>
+<div class="d-flex justify-content-between">
+  <h2>グループ一覧</h2> 
   <%= link_to "新規グループ作成", new_group_path , class: "btn btn-primary" %>
 </div>
+<p class="mb-3"><%= "#{ params[:q].values[0] }の検索結果" if params[:q].values[0].present?%></p>
 
 <div class="row">
   <%= render @result %>
