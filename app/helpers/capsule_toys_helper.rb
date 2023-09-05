@@ -1,0 +1,2 @@
+module CapsuleToysHelper
+end

@@ -1,0 +1,30 @@
+<div class='container-fluid mb-5'>
+  <h1>ガチャ結果は......</h1>
+  <p class='text-center display-1'><%= "＼ #{@result} ／" %></p>
+  <div class='d-flex justify-content-center gap-3 mb-3'>
+    <%= link_to 'Topページへ', root_path, class: 'btn btn-secondary' %>
+    <%= button_to 'もう一度回す', capsule_toys_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<div class 'container-fluid mt-5'>
+  <h2 class='text-center'>おすすめのグループ</h2>
+  <div class='mb-3'>
+    <div class="row mt-5">
+      <% if @groups.empty? %>
+        <div class='text-center display-5'>
+          <%= @result %>のグループはないヨ...... </br>
+          君が第一歩を踏み出してみよう！！
+        </div>
+        <div class='text-center'>
+          <%= link_to 'グループ作成', new_group_path, class: 'rounded-circle btn btn-primary btn-lg mt-5' %>
+        </div>
+      <% else %>
+        <%= render @groups %>
+      <% end %>
+    </div>
+  </div>
+  <%# @groups.each do |c| %>
+    <%#= c.c%>
+  <%# end %>
+</div>
+
