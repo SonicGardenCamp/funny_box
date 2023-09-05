@@ -16,16 +16,6 @@
       </div>
 
       <div class="mb-3">
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: "form-control" %>
-      </div>
-
-      <div class="mb-3">
-      <%= f.label :password_confirmation, "パスワード(確認)" %>
-      <%= f.password_field :password_confirmation, class: "form-control" %>
-      </div>
-
-      <div class="mb-3">
       <%= f.label :college, "大学" %>
       <%= f.text_field :college, class: "form-control" %>
       </div>
@@ -34,8 +24,26 @@
       <%= f.label :profile, "プロフィール" %>
       <%= f.text_area :profile, class: "form-control" %>
       </div>
+      
+      <p>
+        <a data-bs-toggle="collapse" href="#passwordForm" aria-expanded="false" aria-controls="passwordForm">
+          パスワードを変更する
+        </a>
+      </p>
+      <div id="passwordForm" class="collapse">
+          <div class="mb-3">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, class: "form-control" %>
+          </div>
+    
+          <div class="mb-3">
+          <%= f.label :password_confirmation, "パスワード(確認)" %>
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+          </div>
+      </div>
 
       <%= f.submit "変更" %>
     <% end %>
   </div>
 </div>
+
