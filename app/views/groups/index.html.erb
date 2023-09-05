@@ -4,7 +4,7 @@
   
 <div class="row g-3 align-items-center mb-4">
   <div class="col-auto">
-      <%= f.label :name_cont, 'グループ名', class: 'col-form-label'%>
+      <%= f.label :name_or_category_cont, 'グループ名', class: 'col-form-label'%>
   </div>
   <div class="col-auto">
     <%= f.search_field :name_cont, class: "form-control" %>
@@ -36,7 +36,7 @@
   <h2>グループ一覧</h2> 
   <%= link_to "新規グループ作成", new_group_path , class: "btn btn-primary" %>
 </div>
-<p class="mb-3"><%= "#{ params[:q].values[0] }の検索結果" if params[:q].values[0].present?%></p>
+<p class="mb-3"><%= "#{ params[:q].values[0] }" if params[:q].present?%></p>
 
 <div class="row">
   <%= render @result %>
