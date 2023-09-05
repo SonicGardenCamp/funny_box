@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
   post "enter_leave/:id",   to: "groups#enter_leave", as: "enter_leave"
   post "create_tag/:id",   to: "groups#create_tag", as: "create_tag"
+  resource :capsule_toys, only: [:show]
 end
