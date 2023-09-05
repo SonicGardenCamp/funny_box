@@ -17,21 +17,25 @@
         <%= @user.name %>
       </h2>
       <p>
-        大学：<%= @user.college %>
+        大学：
+        <%= @user.college.blank? ? "未登録" : @user.college %>
       </p>
     </div>
     <div class='col-5 card'>
       <p class='card-header text-center'>プロフィール</p>
-      <% if @user.profile %>
-        <p class='card-body'><%=safe_join(@user.profile.split("\n"),tag(:br))%></p>
-      <% end %>
+      <p class='card-body'>
+        <%= @user.profile.blank? ? "未記入" : safe_join(@user.profile.split("\n"),tag(:br)) %>
+      </p>
     </div>
   </div>
   <div class='row'>
     <h2 class='text-center mt-5'>参加グループ</h2>
-    <%#= render 'groups/group', group: @group %>
     <div class="row mt-5">
-       <%= render @groups %>
+      <% if @groups.empty? %>
+        参加しているグループはありません
+      <% else %>
+        <%= render @groups %>
+      <% end %>
     </div>
   </div>
 </div>
