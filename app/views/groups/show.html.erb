@@ -10,7 +10,7 @@
     <div class="justify-content-left">
         <div class="Tag-form mb-3">
         <% if current_user == @group.host_user %>
-          <%= form_with(model: [@group, @tag], local: true, url: create_tag_path(@group.id)) do |f| %>
+          <%= form_with(model: [@group, Tag.new], local: true, url: group_tags_path(@group)) do |f| %>
              <div class="row g-3 align-items-center mb-4">
               <div class="col-auto">
                   <%= f.label :name, '新規タグ', class: 'col-form-label'%>
@@ -47,7 +47,7 @@
             </div>
             <div class="modal-body">
               <ul class='list-group'>
-                <% @users.each do |t| %>
+                <% @group.users.each do |t| %>
                   <li class='list-group-item'>
                     <%= link_to t.name, user_path(t) %>
                 <% end %>
@@ -70,7 +70,7 @@
 
   <!--投稿フォーム-->
     <% if @group.users.include?(current_user) %>
-      <%= form_with(model: [@group, @post], local: true, class: 'd-flex justify-content-center mt-3 mb-3') do |f| %>
+      <%= form_with(model: [@group, Post.new], local: true, class: 'd-flex justify-content-center mt-3 mb-3') do |f| %>
           <%= f.text_area :content, class: 'input-group-text', cols: '50', rows: '1' %>
           <%= f.hidden_field :group_id, value: @group.id %>
           <%= f.submit "投稿", class: 'ms-1 btn btn-secondary' %>
@@ -79,7 +79,7 @@
 
   <!--投稿画面-->
   <div class='row border border-primary rounded-3 mb-5 overflow-auto', style="height: 500px;">
-    <% @posts.each do |post| %>
+    <% @group.posts.order(created_at: :desc).first(100).each do |post| %>
       <div class='mt-3 mb-3'>
         <span>
           <%= link_to post.user.name, user_path(post.user) %>: <%= post.content %>
