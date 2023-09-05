@@ -18,7 +18,7 @@
         <% post = group.posts.order(:id).last  %>
         <% if post.present? %>
           <%= post.content %>
-          <%= l post.created_at %>
+          <span class="update-time"><%= "( #{l post.created_at} )" %></span>
         <% end %>
       </div>
     </div>
