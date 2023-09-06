@@ -36,8 +36,9 @@
   <h2>グループ一覧</h2>
   <%= link_to "新規グループ作成", new_group_path , class: "btn btn-primary" %>
 </div>
-<p class="mb-3"><%= "#{ params[:q].values[0] }" if params[:q].present?%></p>
-
+<%  if params[:q].present? && params[:q].keys[0] != "s" %>
+  <p class="mb-3"><%= "#{ params[:q].values[0]}" %></p>
+<% end %>
 <div class="row">
   <%= render @result %>
 </div>

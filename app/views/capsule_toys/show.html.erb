@@ -1,17 +1,17 @@
 <div class='container-fluid mb-5'>
-  <h1>ガチャ結果は......</h1>
-  <p class='text-center display-1'><%= "＼ #{@result} ／" %></p>
+  <h2 class="mb-3">ガチャ結果は......</h2>
+  <p class='text-center display-1 my-5'><%= "＼ #{@result} ／" %></p>
   <div class='d-flex justify-content-center gap-3 mb-3'>
-    <%= link_to 'Topページへ', root_path, class: 'btn btn-secondary' %>
-    <%= button_to 'もう一度回す', capsule_toys_path, class: 'btn btn-primary' %>
+    <%= link_to 'Topページへ', root_path, class: 'btn btn-outline-dark' %>
+    <%= button_to 'もう一度回す', capsule_toys_path, class: 'btn btn-outline-danger' %>
   </div>
 </div>
 <div class 'container-fluid mt-5'>
-  <h2 class='text-center'>おすすめのグループ</h2>
+  <h2 class='text-center border-bottom border-2'>おすすめのグループ</h2>
   <div class='mb-3'>
-    <div class="row mt-5">
+    <div class="row mt-3">
       <% if @groups.empty? %>
-        <div class='text-center display-5'>
+        <div class='text-center display-5' style= "font-family: 'Yomogi'; " >
           <%= @result %>のグループはないヨ...... </br>
           君が第一歩を踏み出してみよう！！
         </div>
@@ -23,8 +23,5 @@
       <% end %>
     </div>
   </div>
-  <%# @groups.each do |c| %>
-    <%#= c.c%>
-  <%# end %>
 </div>
 
