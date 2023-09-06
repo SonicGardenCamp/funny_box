@@ -1,20 +1,14 @@
 class GroupsController < ApplicationController
   before_action :logged_in_user, only:[:new, :create, :enter_leave]
   before_action :host_user, only:[:edit, :destroy, :update, :create_tag]
+  before_action :set_group, only: %i[show]
 
   def index
     @q = Group.ransack(params[:q])
     @result = @q.result.order(last_posted_at: :desc).page(params[:page])
   end
 
-  # ここの@usersは1回しか使ってない
   def show
-    @group = Group.find(params[:id])
-    # @host_user  = User.find(@group.host_user_id)
-    @users = @group.users
-    @posts = @group.posts.order(created_at: :desc).first(100)
-    @post  = Post.new
-    @tag = Tag.new
   end
 
   # ここの@groupも1回しか使ってなさそう？
@@ -67,18 +61,10 @@ class GroupsController < ApplicationController
     redirect_to groups_url, status: :see_other
   end
 
-  def create_tag
-    @group = Group.find(params[:id])
-    @tag = @group.tags.build(tag_params)
-    if @tag.save
-      @group.tags << @tag
-      redirect_to @group
-    else
-      render "groups/show"
-    end
-  end
-
   private
+    def set_group
+      @group = Group.find(params[:id])
+    end
 
     def group_params
       params.require(:group).permit(:name, :description, :category)

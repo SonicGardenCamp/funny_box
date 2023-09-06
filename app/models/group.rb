@@ -26,4 +26,8 @@ class Group < ApplicationRecord
   #   %w[posts]
   # end
 
+  def add_tag(name)
+    tags.create!(name: name)
+  end
+
 end
