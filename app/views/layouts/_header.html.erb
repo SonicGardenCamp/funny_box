@@ -1,23 +1,23 @@
 <nav class='navbar navbar-expand bg-light px-3'>
   <div class='container-fluid'>
-    <%= link_to 'ふぁにーBox', root_path, class: 'navbar-brand' %>
+    <%= link_to 'ふぁにーBox', root_path, class: 'navbar-brand', style: "font-size: xx-large; font-family: 'Yomogi', cursive;" %>
     <ul class='navbar-nav'>
       <% if logged_in? %>
         <li class='nav-item'>
           <%= link_to 'マイページ', user_path(current_user), class: 'nav-link' %>
         </li>
         <li class='nav-item'>
-          <%= link_to 'グループ', groups_path, class: 'nav-link' %>
+          <%= link_to 'グループ', groups_path, class: 'nav-link mx-3' %>
         </li>
         <li class='nav-item'>
-          <%= link_to 'ログアウト', logout_path, class: 'nav-link', data: { turbo_method: :delete }  %>
+          <%= link_to 'ログアウト', logout_path, class: 'btn btn-outline-dark rounded-pill', data: { turbo_method: :delete }  %>
         </li>
       <% else %>
         <li class='nav-item'>
-          <%= link_to '新規登録', signup_path, class: 'nav-link' %>
+          <%= link_to '新規登録', signup_path, class: 'btn mx-3 rounded-pill fw-bold', style: "background-color: #2CB; color: white;" %>
         </li>
          <li class='nav-item'>
-          <%= link_to 'ログイン', login_path, class: 'nav-link' %>
+          <%= link_to 'ログイン', login_path, class: 'btn rounded-pill fw-bold', style: "background-color: #009dff; color: white;" %>
         </li>
       <% end %>
     </ul>

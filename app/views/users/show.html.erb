@@ -1,14 +1,7 @@
 <div class='container'>
   <div class="row">
     <div class='container w-75'>
-      <h1 class='text-center'>マイページ</h1>
-      <div class='mb-5 col-3 offset-9'>
-        <% if current_user == @user %>
-          <%= link_to "ユーザー編集", edit_user_path, class:'btn btn-secondary' %>
-          <%= link_to "ユーザー削除", user_path, data: { "turbo-method": :delete,
-                                          turbo_confirm: "あなたがホストをしているグループも消えますが本当に削除してもよろしいですか？" }, class:'btn btn-danger' %>
-        <% end %>
-      </div>
+      <h1 class='text-center mb-5'>マイページ</h1>
     </div>
   </div>
   <div class='row'>
@@ -20,8 +13,16 @@
         大学：
         <%= @user.college.blank? ? "未登録" : @user.college %>
       </p>
+      <div class='d-flex flex-column gap-3'>
+        <% if current_user == @user %>
+          <%= link_to "ユーザー編集", edit_user_path, class:'btn btn-outline-secondary mx-auto', style: "width: 125px;" %>
+          <%= link_to "ユーザー削除", user_path, data: { "turbo-method": :delete,
+                                          turbo_confirm: "あなたがホストをしているグループも消えますが本当に削除してもよろしいですか？" },
+                                          class:'btn btn-outline-danger mx-auto', style: "width: 125px;"  %>
+        <% end %>
+      </div>
     </div>
-    <div class='col-5 card'>
+    <div class='col-6 card'>
       <p class='card-header text-center'>プロフィール</p>
       <p class='card-body'>
         <%= @user.profile.blank? ? "未記入" : safe_join(@user.profile.split("\n"),tag(:br)) %>
