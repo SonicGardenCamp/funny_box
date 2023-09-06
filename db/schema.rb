@@ -15,17 +15,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_015834) do
   enable_extension "plpgsql"
 
   create_table "groups", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
-    t.integer "host_user_id"
+    t.integer "host_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "last_posted_at"
-    t.string "category"
+    t.string "category", null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "content"
+    t.string "content", null: false
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
     t.datetime "created_at", null: false
@@ -44,8 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_015834) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.string "genre"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,11 +59,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_015834) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+    t.string "name", null: false
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.string "remember_digest"
     t.text "profile"
     t.string "college"
