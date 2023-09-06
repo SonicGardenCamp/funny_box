@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :groups do
     resources :posts, only: %i[create destroy]
     resources :tags, only: %i[create], module: :groups
+    resource :relationships, only: %i[create destroy], module: :groups
   end
-  post "enter_leave/:id",   to: "groups#enter_leave", as: "enter_leave"
 
   resource :capsule_toys, only: %i[show]
 end

@@ -8,13 +8,17 @@
       <div class="card-text ellipsis"><%= group.description %></div>
       <div class="custom-links mt-auto ellipsis">
         <%= link_to "グループの中を見る", group_path(group), class: "btn btn-light " %>
+        <% if group.participating?(current_user) %>
+          <%= button_to button_text(group)[0], group_relationships_path(group), class: 'btn btn-outline-danger', method: :delete %>
+        <% else %>
           <%=
             link_to button_text(group)[0],
-            enter_leave_path(group.id),
+              group_relationships_path(group),
             class: "ms-3 me-5 card-link btn
                     #{ button_text(group)[1] }",
             data: { turbo_method: :post }
           %>
+        <% end %>
         <% post = group.posts.order(:id).last  %>
         <% if post.present? %>
           <%= post.content %>

@@ -1,5 +1,5 @@
-class Groups::TagsController < ApplicationController
-  before_action :set_group
+class Groups::TagsController < Groups::BaseController
+  before_action :require_host_user!
 
   def create
     if @group.add_tag(tag_params[:name])
@@ -10,11 +10,11 @@ class Groups::TagsController < ApplicationController
   end
 
 private
-  def set_group
-    @group = Group.find(params[:group_id])
-  end
-
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def require_host_user!
+    redirect_to(root_url, status: :see_other) unless @group.host_user?(current_user)
   end
 end

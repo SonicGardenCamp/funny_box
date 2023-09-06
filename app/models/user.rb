@@ -2,7 +2,8 @@ class User < ApplicationRecord
   has_many :user_group_relationships,  dependent: :destroy
   has_many :groups, through: :user_group_relationships
   has_many :posts, dependent: :destroy
-  
+  has_many :hosted_groups, class_name: :Group, foreign_key: :host_user_id, inverse_of: :host_user
+
   before_destroy :delete_host_groups
   
   attr_accessor :remember_token
