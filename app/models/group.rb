@@ -30,4 +30,39 @@ class Group < ApplicationRecord
     tags.create!(name: name)
   end
 
+  def save_and_participate(user)
+    transaction do
+      self.host_user_id = user.id
+      self.users << user
+      save!
+    end
+  end
+
+  def host_user?(user)
+    host_user_id == user.id
+  end
+
+  def participate(user)
+    user_group_relationships.create!(user: user)
+  end
+
+  def leave(user)
+    user_group_relationships.find_by(user: user)&.destroy
+  end
+
+  def participating?(user)
+    user_group_relationships.exists?(user: user)
+  end
+
+  def can_leave?(user)
+    return false if host_user?(user)
+
+    participating?(user)
+  end
+
+  def can_participate?(user)
+    return false if host_user?(user)
+
+    !participating?(user)
+  end
 end
