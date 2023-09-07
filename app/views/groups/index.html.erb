@@ -39,7 +39,7 @@
 <%  if params[:q].present? && params[:q].keys[0] != "s" %>
   <p class="mb-3"><%= "#{ params[:q].values[0]}" %></p>
 <% end %>
-<div class="row">
+<div class="row mt-3">
   <%= render @result %>
 </div>
 
