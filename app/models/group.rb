@@ -12,7 +12,7 @@ class Group < ApplicationRecord
   end
 
   
-  CATEGORIES = ["ぐるくん", "インドア", "アウトドア","料理","スポーツ","遊び場","飯","賭け事"].freeze
+  CATEGORIES = %w(ぐるくん スポーツ 娯楽 レジャー 料理 ゲーム 映像作品 音楽 お酒 その他).freeze
 
 
   has_many :tag_group_relationships, dependent: :destroy

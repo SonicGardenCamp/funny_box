@@ -4,29 +4,40 @@ user1 = User.create!(name:  "ぐるくん皇帝",
             password_confirmation: "gurukun")
 
 
-group1 = Group.create!(name: "ぐるくん後援会北京支部",
-              description: "愚瑠君最高！",
+group1 = Group.create!(name: "ぐるくん後援会東北支部",
+              description: "ぐるくん最高！",
               category: "ぐるくん",
-              host_user_id: 1)
+              host_user_id: user1.id)
 
-group2 = Group.create!(name: "ぐるくん後援会大阪支部",
-              description: "ぐるくんは最高や！",
-              category: "ぐるくん",
-              host_user_id: 1)
+group2 = Group.create!(name: "女子会",
+              description: "週6で活動します",
+              category: "その他",
+              host_user_id: user1.id)
 
 group3 = Group.create!(name: "ぐるくん後援会アラスカ支部",
               description: "Gurukun is wonderful!!",
               category: "ぐるくん",
-              host_user_id: 1)
+              host_user_id: user1.id)
 
 group1.users << user1              
 group2.users << user1              
 group3.users << user1
 
-10.times do |m|
-  group = Group.create(name: Faker::Hobby.activity,
-                        host_user_id: 1,
-                        category: Group::CATEGORIES[rand(Group::CATEGORIES.length)],
+group_names = %w(
+                  ぐるくんアンチの会
+                  ダンス仲間
+                  麻雀狂いの会
+                  自然愛好者
+                  お寿司愛好会
+                  ハイパーカジュアルゲーム
+                  ニコニコ動画研究会
+                  rep.Osaka
+                )
+
+8.times do |m|
+  group = Group.create(name: group_names[m],
+                        host_user_id: user1.id,
+                        category: Group::CATEGORIES[m],
                         )
 
   3.times do |n|
@@ -39,8 +50,8 @@ group3.users << user1
                         password_confirmation: password)
     group.users << user
 
-    2.times do
-      post = user.posts.create(content: Faker::Lorem.sentence(word_count: 5))
+    4.times do
+      post = user.posts.create(content: Faker::JapaneseMedia::StudioGhibli.quote)
       group.posts << post
     end
   end
