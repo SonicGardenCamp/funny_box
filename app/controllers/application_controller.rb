@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  include GroupsHelper
 
   def logged_in_user
     unless logged_in?

@@ -1,0 +1,11 @@
+<% if group.can_leave?(current_user) %>
+  <%= button_to '退会する', group_relationships_path(group), class: 'btn btn-outline-danger', method: :delete %>
+<% end %>
+<% if group.can_participate?(current_user) %>
+  <%=
+    link_to '参加する',
+      group_relationships_path(group),
+      class: "card-link btn btn-primary",
+      data: { turbo_method: :post }
+  %>
+<% end %>

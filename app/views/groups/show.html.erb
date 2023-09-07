@@ -38,47 +38,41 @@
 
     </div>
 
-    <div class='d-flex justify-content-end mb-3'>
+    <div class='d-flex justify-content-end mb-3 gap-2'>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         メンバー
       </button>
-      <!--モーダル-->
-      <div class="modal fade" id="exampleModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">メンバー</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <ul class='list-group'>
-                <% @group.users.each do |t| %>
-                  <li class='list-group-item'>
-                    <%= link_to t.name, user_path(t), class: "text-decoration-none " %>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+      <%= render 'groups/actions', group: @group %>
+    </div>
+    <!--モーダル-->
+    <div class="modal fade" id="exampleModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">メンバー</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul class='list-group'>
+              <% @group.users.each do |t| %>
+                <li class='list-group-item'>
+                  <%= link_to t.name, user_path(t), class: "text-decoration-none " %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-      <%=
-        link_to button_text(@group)[0],
-        enter_leave_path(@group.id),
-        class: "ms-1 card-link btn #{button_text(@group)[1]}",
-        data: { turbo_method: :post }
-      %>
     </div>
   </div>
 
   <!--投稿フォーム-->
     <% if @group.users.include?(current_user) %>
-      <%= form_with(model: [@group, Post.new], local: true, class: 'd-flex justify-content-center mt-3 mb-3') do |f| %>
+      <%= form_with(model: [@group, Post.new], url: group_posts_path(@group), local: true, class: 'd-flex justify-content-center mt-3 mb-3') do |f| %>
           <%= f.text_area :content, class: 'input-group-text', cols: '50', rows: '1' %>
-          <%= f.hidden_field :group_id, value: @group.id %>
           <%= f.submit "投稿", class: 'ms-1 btn btn-secondary' %>
         <% end %>
     <% end %>

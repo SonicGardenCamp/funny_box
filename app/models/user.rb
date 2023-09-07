@@ -1,11 +1,9 @@
 class User < ApplicationRecord
-  has_many :user_group_relationships,  dependent: :destroy
+  has_many :user_group_relationships, dependent: :destroy
   has_many :groups, through: :user_group_relationships
   has_many :posts, dependent: :destroy
-  has_many :hosted_groups, class_name: :Group, foreign_key: :host_user_id, inverse_of: :host_user
+  has_many :hosted_groups, class_name: :Group, foreign_key: :host_user_id, inverse_of: :host_user, dependent: :destroy
 
-  before_destroy :delete_host_groups
-  
   attr_accessor :remember_token
   before_save { self.email = email.downcase.strip }
   validates :name,  presence: true, length: { maximum: 20 }
@@ -47,11 +45,5 @@ class User < ApplicationRecord
   # ユーザーのログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
-  end
-  
-  def delete_host_groups
-    # ユーザーがホストとして関連付けられているグループを削除
-    host_groups = Group.where(host_user_id: self.id)
-    host_groups.destroy_all
   end
 end

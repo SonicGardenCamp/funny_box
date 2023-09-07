@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_015834) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_07_091141) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_015834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_tag_group_relationships_on_group_id"
+    t.index ["tag_id", "group_id"], name: "index_tag_group_relationships_on_tag_id_and_group_id", unique: true
     t.index ["tag_id"], name: "index_tag_group_relationships_on_tag_id"
   end
 
@@ -56,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_015834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_user_group_relationships_on_group_id"
+    t.index ["user_id", "group_id"], name: "index_user_group_relationships_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_user_group_relationships_on_user_id"
   end
 

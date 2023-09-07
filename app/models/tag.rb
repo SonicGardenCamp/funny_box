@@ -3,7 +3,6 @@ class Tag < ApplicationRecord
   has_many :groups, through: :tag_group_relationships
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[name, genre]
+    %w[name genre]
   end
-
 end

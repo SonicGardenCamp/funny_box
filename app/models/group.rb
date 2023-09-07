@@ -53,4 +53,16 @@ class Group < ApplicationRecord
   def participating?(user)
     user_group_relationships.exists?(user: user)
   end
+
+  def can_leave?(user)
+    return false if host_user?(user)
+
+    participating?(user)
+  end
+
+  def can_participate?(user)
+    return false if host_user?(user)
+
+    !participating?(user)
+  end
 end
